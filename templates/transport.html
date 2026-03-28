@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero compact-hero transport-hero">
+  <div class="section-tag">Транспорт</div>
+  <h2>{{ transport_network.title }}</h2>
+  <p>{{ transport_network.lead }}</p>
+  <div class="action-row hero-actions-left">
+    <a class="btn btn-secondary" href="{{ url_for('project') }}">Назад к проекту</a>
+    <a class="btn btn-primary" href="{{ url_for('map_page') }}" target="_blank" rel="noreferrer">Открыть карту города</a>
+  </div>
+</section>
+
+<section class="content-section transport-page" data-transport-page data-transport='{{ transport_network | tojson }}'>
+  <div class="transport-layout">
+    <aside class="transport-sidebar detail-card reveal-card">
+      <div class="section-tag">Слои</div>
+      <h3>Включайте нужные линии</h3>
+      <div class="transport-controls" data-transport-controls></div>
+      <div class="transport-sidebar-note">
+        Нажмите на станцию, чтобы увидеть описание линии и название остановки.
+      </div>
+      <div class="transport-station-card" data-station-card hidden>
+        <div class="transport-station-kicker" data-station-system></div>
+        <h4 data-station-name></h4>
+        <p data-station-description></p>
+      </div>
+    </aside>
+
+    <div class="transport-stage-card detail-card reveal-card">
+      <div class="transport-toolbar">
+        <div class="transport-legend" data-transport-legend></div>
+        <div class="transport-zoom-controls">
+          <button type="button" class="zoom-btn" data-zoom-action="out" aria-label="Уменьшить">−</button>
+          <button type="button" class="zoom-btn" data-zoom-action="reset" aria-label="Сбросить масштаб">Сброс</button>
+          <button type="button" class="zoom-btn" data-zoom-action="in" aria-label="Увеличить">+</button>
+        </div>
+      </div>
+
+      <div class="transport-stage-wrap" data-transport-wrap>
+        <div class="transport-stage" data-transport-stage>
+          <div class="transport-zoom-layer" data-transport-zoom>
+            <img class="transport-base-image" src="{{ transport_network.base_image }}" alt="Схема Лососинска">
+            <svg class="transport-overlay" data-transport-overlay viewBox="0 0 {{ transport_network.viewport.width }} {{ transport_network.viewport.height }}" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const page = document.querySelector('[data-transport-page]');
+  if (!page) return;
+
+  const data = JSON.parse(page.dataset.transport || '{}');
+  const systems = Array.isArray(data.systems) ? data.systems : [];
+  const controls = page.querySelector('[data-transport-controls]');
+  const legend = page.querySelector('[data-transport-legend]');
+  const overlay = page.querySelector('[data-transport-overlay]');
+  const wrap = page.querySelector('[data-transport-wrap]');
+  const stage = page.querySelector('[data-transport-stage]');
+  const zoomLayer = page.querySelector('[data-transport-zoom]');
+  const stationCard = page.querySelector('[data-station-card]');
+  const stationSystem = page.querySelector('[data-station-system]');
+  const stationName = page.querySelector('[data-station-name]');
+  const stationDescription = page.querySelector('[data-station-description]');
+  const zoomButtons = Array.from(page.querySelectorAll('[data-zoom-action]'));
+
+  let scale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  const visibleSystems = new Set(systems.filter((item) => item.visible !== false).map((item) => item.id));
+
+  function smoothPath(points) {
+    if (!points.length) return '';
+    if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length - 1; i += 1) {
+      const current = points[i];
+      const next = points[i + 1];
+      const midX = (current.x + next.x) / 2;
+      const midY = (current.y + next.y) / 2;
+      d += ` Q ${current.x} ${current.y} ${midX} ${midY}`;
+    }
+    const last = points[points.length - 1];
+    d += ` T ${last.x} ${last.y}`;
+    return d;
+  }
+
+  function updateTransform() {
+    zoomLayer.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  }
+
+  function clampScale(value) {
+    return Math.min(2.8, Math.max(0.7, value));
+  }
+
+  function applyZoom(nextScale, centerX, centerY) {
+    const bounded = clampScale(nextScale);
+    const ratio = bounded / scale;
+    offsetX = centerX - (centerX - offsetX) * ratio;
+    offsetY = centerY - (centerY - offsetY) * ratio;
+    scale = bounded;
+    updateTransform();
+  }
+
+  function setStationCard(system, station) {
+    stationSystem.textContent = system.name;
+    stationName.textContent = station.name;
+    stationDescription.textContent = system.description;
+    stationCard.hidden = false;
+  }
+
+  function renderTransport() {
+    controls.innerHTML = '';
+    legend.innerHTML = '';
+    overlay.innerHTML = '';
+
+    systems.forEach((system) => {
+      const checked = visibleSystems.has(system.id);
+
+      const label = document.createElement('label');
+      label.className = 'transport-toggle';
+      label.innerHTML = `
+        <input type="checkbox" ${checked ? 'checked' : ''} data-system-toggle="${system.id}">
+        <span class="transport-toggle-swatch" style="--line:${system.color}"></span>
+        <span class="transport-toggle-copy">
+          <strong>${system.name}</strong>
+          <small>${system.description}</small>
+        </span>
+      `;
+      controls.appendChild(label);
+
+      const legendItem = document.createElement('button');
+      legendItem.type = 'button';
+      legendItem.className = `transport-legend-item${checked ? ' is-active' : ''}`;
+      legendItem.dataset.legendToggle = system.id;
+      legendItem.innerHTML = `<span class="legend-line" style="--line:${system.color}"></span><span>${system.name}</span>`;
+      legend.appendChild(legendItem);
+
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      group.setAttribute('data-system-group', system.id);
+      group.classList.toggle('is-hidden', !checked);
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', smoothPath(system.stations));
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', system.color);
+      path.setAttribute('stroke-width', '10');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('opacity', '0.92');
+      path.setAttribute('filter', 'url(#line-shadow)');
+      group.appendChild(path);
+
+      system.stations.forEach((station) => {
+        const stationGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        stationGroup.classList.add('transport-station');
+        stationGroup.setAttribute('transform', `translate(${station.x} ${station.y})`);
+        stationGroup.addEventListener('click', () => setStationCard(system, station));
+
+        const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        ring.setAttribute('r', '11');
+        ring.setAttribute('fill', '#ffffff');
+        ring.setAttribute('stroke', system.color);
+        ring.setAttribute('stroke-width', '4');
+        stationGroup.appendChild(ring);
+
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('r', '4');
+        dot.setAttribute('fill', system.color);
+        stationGroup.appendChild(dot);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.textContent = station.name;
+        text.setAttribute('x', '16');
+        text.setAttribute('y', '-14');
+        text.setAttribute('class', 'transport-station-label');
+        stationGroup.appendChild(text);
+
+        group.appendChild(stationGroup);
+      });
+
+      overlay.appendChild(group);
+    });
+
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <filter id="line-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(12,24,36,.25)" />
+      </filter>
+    `;
+    overlay.prepend(defs);
+  }
+
+  controls.addEventListener('change', (event) => {
+    const toggle = event.target.closest('[data-system-toggle]');
+    if (!toggle) return;
+    const id = toggle.dataset.systemToggle;
+    if (toggle.checked) {
+      visibleSystems.add(id);
+    } else {
+      visibleSystems.delete(id);
+    }
+    renderTransport();
+  });
+
+  legend.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-legend-toggle]');
+    if (!button) return;
+    const id = button.dataset.legendToggle;
+    if (visibleSystems.has(id)) visibleSystems.delete(id); else visibleSystems.add(id);
+    renderTransport();
+  });
+
+  zoomButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.zoomAction;
+      const rect = stage.getBoundingClientRect();
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      if (action === 'in') applyZoom(scale + 0.12, cx, cy);
+      if (action === 'out') applyZoom(scale - 0.12, cx, cy);
+      if (action === 'reset') {
+        scale = 1;
+        offsetX = 0;
+        offsetY = 0;
+        updateTransform();
+      }
+    });
+  });
+
+  stage.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    const rect = stage.getBoundingClientRect();
+    const cx = event.clientX - rect.left;
+    const cy = event.clientY - rect.top;
+    const delta = event.deltaY < 0 ? 0.12 : -0.12;
+    applyZoom(scale + delta, cx, cy);
+  }, { passive: false });
+
+  stage.addEventListener('pointerdown', (event) => {
+    isDragging = true;
+    startX = event.clientX - offsetX;
+    startY = event.clientY - offsetY;
+    stage.setPointerCapture(event.pointerId);
+    stage.classList.add('is-dragging');
+  });
+
+  stage.addEventListener('pointermove', (event) => {
+    if (!isDragging) return;
+    offsetX = event.clientX - startX;
+    offsetY = event.clientY - startY;
+    updateTransform();
+  });
+
+  function endDrag(event) {
+    if (!isDragging) return;
+    isDragging = false;
+    stage.classList.remove('is-dragging');
+    if (event && event.pointerId !== undefined) stage.releasePointerCapture(event.pointerId);
+  }
+
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointerleave', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
+  renderTransport();
+  updateTransform();
+})();
+</script>
+{% endblock %}

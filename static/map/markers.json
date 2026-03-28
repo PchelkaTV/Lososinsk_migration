@@ -1,0 +1,1147 @@
+{
+  "markers": [
+    {
+      "x": 24,
+      "z": -40,
+      "title": "Мэрия Лососинска",
+      "description": "Главное административное здание города-государства. ",
+      "photos": [
+        "mayor_1.png",
+        "mayor_2.png",
+        "mayor_3.png"
+      ],
+      "category": "Администрация",
+      "address": "Центральная площадь",
+      "openingHours": "Пн–Пт 09:00–16:00",
+      "pinColor": "#d93025",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },
+    {
+      "x": 99,
+      "z": 102,
+      "title": "Парламент Лососинска",
+      "description": "",
+      "photos": [
+        "parlament_1.png",
+        "parlament_2.png",
+        "parlament_3.png",
+        "parlament_4.png"
+      ],
+      "category": "Администрация",
+      "address": "Въезд в город",
+      "openingHours": "По расписанию заседаний",
+      "pinColor": "#d93025",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },
+    {
+      "x": 20,
+      "z": 101,
+      "title": "Католический собор Святого Паула",
+      "description": "Собор был построен в 1870 году в период раннего развития города. Интерьер храма оформлен в традиционной для готики манере с продольным нефом и алтарной частью. В настоящее время собор является действующим католическим храмом и одной из ключевых достопримечательностей центра Лососинска.",
+      "photos": [
+        "sw_paul_1.png",
+        "sw_paul_2.png",
+        "sw_paul_3.png",
+        "sw_paul_4.png"
+      ],
+      "category": "Администрация",
+      "address": "ул. Вокзальная",
+      "openingHours": "Пн-Вс 8:00 - 19:00",
+      "pinColor": "#FFA500",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },
+    {
+      "x": -33,
+      "z": 115,
+      "title": "INFO-центр",
+      "description": "Городской инфоцентр для туристов и гостей города.",
+      "photos": [
+        "Info_1.png"
+      ],
+      "category": "Помощь",
+      "address": "ул. Вокзальная",
+      "openingHours": "Пн-Вс 10:00 - 20:00",
+      "pinColor": "#d93025",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },
+    {
+      "x": 3,
+      "z": 198,
+      "title": "ЖД Вокзал Лососинск-Центр",
+      "description": "",
+      "photos": [
+        "railway_1.png",
+        "railway_2.png"
+      ],
+      "category": "Транспорт",
+      "address": "ул. Вокзальная",
+      "openingHours": "Пн-Все Круглосуточно",
+      "pinColor": "#0000FF",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },
+        {
+      "x": 6,
+      "z": 148,
+      "title": "Паровоз Л-01",
+      "description": "Памятный знак первому поезду Лососинской железной дороги. Локомотив Л-01 эксплуатировался в 1878–1913 годах и обслуживал маршрут Спавен — Лососинск. Монумент установлен в честь начала железнодорожного сообщения и становления транспортной системы города.",
+      "photos": [
+        "train_1.png"
+      ],
+      "category": "Памятник",
+      "address": "ул. Вокзальная",
+      "openingHours": "Пн-Все Круглосуточно",
+      "pinColor": "#C0C0C0",
+      "labelMinZoom": 7,
+      "dotMinZoom": 5
+    },  {
+    "x": -207,
+    "z": 50,
+    "title": "Памятник политическим заключённым",
+    "description": "Памятник, посвящённый жителям Лососинска, подвергшимся политическим преследованиям в периуд диктатуры",
+    "photos": [
+      "polit_1.png"
+    ],
+    "category": "Памятник",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -30,
+    "z": -421,
+    "title": "Памятник основателям города",
+    "description": "Памятник в честь первых поселенцев, строителей и организаторов Лососинска, заложивших основы его развития.",
+    "photos": [
+      "osnova_1.png"
+    ],
+    "category": "Памятник",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 201,
+    "z": 106,
+    "title": "Мемориал жертвам Великой Освободительной войны",
+    "description": "Мемориальный комплекс, посвящённый 2688 жителям и защитникам города, погибшим в годы Великой Освободительной войны.",
+    "photos": [
+      "SVO_1.png",
+      "SVO_2.png"
+    ],
+    "category": "Мемориал",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 266,
+    "z": 97,
+    "title": "Памятник лётчикам",
+    "description": "Памятник, посвящённый первым лётчикам Лососинска и пионерам городской авиации.",
+    "photos": [
+      "plain_1.png",
+      "plain_2.png"
+    ],
+    "category": "Памятник",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -102,
+    "z": 158,
+    "title": "Мемориал погибшим во время пожара в отеле",
+    "description": "Мемориал в память о 63 жертвах крупного пожара 14 ноября 2021 года в старейшем отеле города.",
+    "photos": [
+      "hotel_fire_1.png",
+      "hotel_fire_2.png"
+    ],
+    "category": "Мемориал",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 21,
+    "z": -14,
+    "title": "Памятник пёсику",
+    "description": "Небольшой городской памятник, посвящённый пёсику, ставшему одним из неофициальных символов центра города. Пёсик живший на улице в центре около 5ти лет внезапно пропал. Его доброту увековечили небольшим памятником прямо напротив Мэрии.",
+    "photos": [
+      "dog_1.png"
+    ],
+    "category": "Памятник",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+      {
+    "x": -250,
+    "z": 66,
+    "title": "Городская тюрьма",
+    "description": "Режимный объект с ограниченным доступом. Посещение возможно только в установленные часы и по согласованному порядку.",
+    "photos": [
+      "jail_1.png"
+    ],
+    "category": "Тюрьма",
+    "address": "",
+    "openingHours": "Посещение: ежедневно 10:00–12:00",
+    "pinColor": "#4A4A4A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -83,
+    "z": 45,
+    "title": "Главное полицейское управление",
+    "description": "Центральное управление полиции Лососинска и место размещения городской дежурной части.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Полиция",
+    "address": "",
+    "openingHours": "Дежурная часть: круглосуточно",
+    "pinColor": "#2F5FAF",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -119,
+    "z": 25,
+    "title": "Здание Следственного комитета",
+    "description": "Административное здание следственных органов Лососинска. Объект закрыт для свободного посещения.",
+    "photos": [
+      "SK_1.png"
+    ],
+    "category": "Госучреждение",
+    "address": "",
+    "openingHours": "Свободное посещение закрыто",
+    "pinColor": "#2E3A46",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -59,
+    "z": 89,
+    "title": "Верховный и городской суд",
+    "description": "Судебный комплекс, в котором размещаются Верховный суд Лососинска и городской суд.",
+    "photos": [
+      "sud_1.png",
+      "sud_2.png"
+    ],
+    "category": "Суд",
+    "address": "",
+    "openingHours": "По расписанию судебных заседаний",
+    "pinColor": "#6A6F7A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -24,
+    "z": -38,
+    "title": "Офис Центрального банка Лососинска",
+    "description": "Главный офис Центрального банка Лососинска. Здесь размещаются как административные подразделения регулятора, так и клиентская зона, работающая в формате обычного банка для отдельных операций и консультаций.",
+    "photos": [
+      "l_bank_1.png"
+    ],
+    "category": "Банк",
+    "address": "",
+    "openingHours": "Клиентский режим: Пн–Сб 10:00–18:00",
+    "pinColor": "#85713C",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 61,
+    "z": 96,
+    "title": "Дворец бракосочетаний и ЗАГС",
+    "description": "Городской Дворец бракосочетаний и отдел записи актов гражданского состояния.",
+    "photos": [
+      "zags_1.png"
+    ],
+    "category": "ЗАГС",
+    "address": "",
+    "openingHours": "По записи и расписанию церемоний",
+    "pinColor": "#B06AAE",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+      {
+    "x": -77,
+    "z": -89,
+    "title": "Магазин «Фруктовочка»",
+    "description": "",
+    "photos": [
+      "frukt_1.png"
+    ],
+    "category": "Магазин",
+    "address": "",
+    "openingHours": "Пн-Вс 7:00 - 21:00",
+    "pinColor": "#6BBF59",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -104,
+    "z": -168,
+    "title": "ТЦ «Солыш»",
+    "description": "Крупный торговый центр с магазинами, павильонами и зонами повседневного обслуживания.",
+    "photos": [
+      "soli_1.png"
+    ],
+    "category": "Торговый центр",
+    "address": "",
+    "openingHours": "Пн-Вс 10:00–22:00",
+    "pinColor": "#D18B47",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 70,
+    "z": -138,
+    "title": "Театр оперетты",
+    "description": "Городской театр, в котором проходят постановки оперетты, музыкальные спектакли и концертные программы.",
+    "photos": [
+      "opereta_1.png"
+    ],
+    "category": "Театр",
+    "address": "",
+    "openingHours": "По расписанию спектаклей",
+    "pinColor": "#9B59B6",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 180,
+    "z": -187,
+    "title": "Больница и поликлиника",
+    "description": "Крупный медицинский комплекс, объединяющий стационарное лечение, амбулаторный приём и диагностические службы.",
+    "photos": [
+      "hospital_1.png",
+      "hospital_2.png",
+      "hospital_3.png"
+    ],
+    "category": "Больница",
+    "address": "",
+    "openingHours": "Больница: круглосуточно; поликлиника: Пн-Вс 7:00 - 17:00",
+    "pinColor": "#D9534F",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 300,
+    "z": -89,
+    "title": "Автовокзал",
+    "description": "Главный городской автовокзал, обслуживающий междугородние, пригородные и внутренние автобусные маршруты.",
+    "photos": [
+      "bus_station_1.png"
+    ],
+    "category": "Автовокзал",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#3E8ED0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 106,
+    "z": -73,
+    "title": "Средняя школа № 1",
+    "description": "Государственная общеобразовательная школа города.",
+    "photos": [
+      "school_1.png"
+    ],
+    "category": "Школа",
+    "address": "",
+    "openingHours": "Пн–Пт 08:00–18:00",
+    "pinColor": "#4F81BD",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 22,
+    "z": -74,
+    "title": "Городской рынок",
+    "description": "Торговая площадка с продуктами, товарами повседневного спроса и местными лавками.",
+    "photos": [
+      "pjaca_1.png","pjaca_2.png"
+    ],
+    "category": "Рынок",
+    "address": "",
+    "openingHours": "Ежедневно 08:00–16:00",
+    "pinColor": "#E0A800",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 133,
+    "z": 16,
+    "title": "Кинотеатр",
+    "description": "Городской кинотеатр с регулярными кинопоказами и вечерними сеансами.",
+    "photos": [
+      "cinema_1.png"
+    ],
+    "category": "Кинотеатр",
+    "address": "",
+    "openingHours": "По расписанию сеансов",
+    "pinColor": "#7D5BA6",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 218,
+    "z": -9,
+    "title": "АЗС L-Fuel",
+    "description": "Автозаправочная станция сети L-Fuel.",
+    "photos": [
+      "L_fuel_1.png"
+    ],
+    "category": "АЗС",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#2E8B57",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 176,
+    "z": 104,
+    "title": "Здание Налоговой службы и инкассации",
+    "description": "Административное здание налоговой службы и подразделений, связанных с инкассацией и финансовым сопровождением.",
+    "photos": [
+      "nalog_1.png"
+    ],
+    "category": "Госучреждение",
+    "address": "",
+    "openingHours": "Пн–Пт 09:00–18:00",
+    "pinColor": "#5F6B77",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 216,
+    "z": 189,
+    "title": "Лососинский исторический музей",
+    "description": "Городской музей, посвящённый истории Лососинска, его развитию, культуре и ключевым периодам прошлого.",
+    "photos": [
+      "museam_1.png",
+      "museam_2.png",
+      "museam_3.png"
+    ],
+    "category": "Музей",
+    "address": "",
+    "openingHours": "Вт–Вс 10:00–19:00",
+    "pinColor": "#8C6D46",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 110,
+    "z": 197,
+    "title": "Институт имени Даниила Терещенко",
+    "description": "Государственный институт, ведущий образовательную и научную деятельность.",
+    "photos": [
+      "vuz_1.png",
+      "vuz_2.png",
+      "vuz_3.png"
+    ],
+    "category": "Институт",
+    "address": "",
+    "openingHours": "Пн–Пт 08:30–18:30",
+    "pinColor": "#4063A3",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 308,
+    "z": 92,
+    "title": "Международный Лососинский аэропорт",
+    "description": "Главный воздушный узел города, обслуживающий внутренние и международные рейсы.",
+    "photos": [
+      "Airport_1.png",
+      "Airport_2.png",
+      "Airport_3.png",
+      "Airport_4.png"
+    ],
+    "category": "Аэропорт",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#2C7FB8",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 26,
+    "z": -211,
+    "title": "ГЭС",
+    "description": "Гидроэлектростанция, обеспечивающая выработку электроэнергии для города и прилегающих районов.",
+    "photos": [
+      "GES_1.png"
+    ],
+    "category": "Инфраструктура",
+    "address": "",
+    "openingHours": "Режимный объект",
+    "pinColor": "#4AA3A2",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+      {
+    "x": -111,
+    "z": 272,
+    "title": "Сцена для музыкальных концертов",
+    "description": "Открытая городская сцена, на которой проводятся концерты, фестивали, праздничные выступления и общественные мероприятия.",
+    "photos": [
+      "scene_1.png",
+      "scene_2.png"
+    ],
+    "category": "Сцена",
+    "address": "",
+    "openingHours": "По расписанию мероприятий",
+    "pinColor": "#A65AD1",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -117,
+    "z": 163,
+    "title": "Пекарня «Хлебный дом»",
+    "description": "Старинная городская пекарня, считающаяся одной из старейших в округе. Историческое здание датируется 1827 годом и, по местной традиции, работало ещё до официального основания города.",
+    "photos": [
+      "bread_hause_1.png"
+    ],
+    "category": "Пекарня",
+    "address": "",
+    "openingHours": "Ежедневно 07:00–20:00",
+    "pinColor": "#C68642",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -70,
+    "z": 110,
+    "title": "Посольство Тунавы",
+    "description": "Дипломатическое представительство Тунавы в Лососинске. В здании также действует визовый центр, принимающий документы на визы, въездные разрешения и сопутствующие обращения.",
+    "photos": [
+      "tunava_amb_1.png",
+      "tunava_amb_2.png"
+    ],
+    "category": "Посольство",
+    "address": "",
+    "openingHours": "Пн–Пт 09:00–17:00",
+    "pinColor": "#3E6FB0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -130,
+    "z": 111,
+    "title": "Отель «Элеон»",
+    "description": "Пятизвёздочный премиальный отель, считающийся одним из самых престижных мест размещения в городе. Известен высоким уровнем сервиса, просторными номерами и представительскими залами.",
+    "photos": [
+      "eleon_1.png",
+      "eleon_2.png"
+    ],
+    "category": "Отель",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#B48A2C",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -307,
+    "z": -154,
+    "title": "Городской бассейн",
+    "description": "Муниципальный бассейн для плавания, тренировок и оздоровительных занятий.",
+    "photos": [
+      "pool_1.png"
+    ],
+    "category": "Бассейн",
+    "address": "",
+    "openingHours": "Ежедневно 08:00–21:00",
+    "pinColor": "#4FA3D9",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -224,
+    "z": -151,
+    "title": "Воркаут-площадка",
+    "description": "Открытая спортивная площадка с турниками, брусьями и зонами для уличных тренировок.",
+    "photos": [
+      "sport_1.png"
+    ],
+    "category": "Спорт",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#5FAF5F",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -206,
+    "z": -232,
+    "title": "Пожарное депо № 2",
+    "description": "Действующее пожарное депо, обслуживающее часть городских районов и выезжающее на пожары, аварии и иные чрезвычайные происшествия.",
+    "photos": [
+      "fire_2_1.png"
+    ],
+    "category": "Пожарная часть",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#D9534F",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 76,
+    "z": 27,
+    "title": "Пожарное депо № 1",
+    "description": "Старейшее пожарное депо города. Исторически является одним из ключевых объектов пожарной охраны Лососинска.",
+    "photos": [
+      "fire_1_1.png",
+      "fire_1_2.png"
+    ],
+    "category": "Пожарная часть",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#D9534F",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 220,
+    "z": -139,
+    "title": "Городская аптека",
+    "description": "Муниципальная аптека, в том числе работающая с льготными категориями граждан и социальными программами обеспечения лекарствами.",
+    "photos": [
+      "apteka_1.png"
+    ],
+    "category": "Аптека",
+    "address": "",
+    "openingHours": "Ежедневно 08:00–20:00",
+    "pinColor": "#5DBB9A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 380,
+    "z": -350,
+    "title": "Еловый бор",
+    "description": "Спокойный лесной массив на окраине города. Популярное место для прогулок, отдыха на природе и тихого времяпрепровождения.",
+    "photos": [
+      "forest_1.png"
+    ],
+    "category": "Лес",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#3F7D3F",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 344,
+    "z": -390,
+    "title": "Старое заброшенное кладбище",
+    "description": "Историческое кладбище, давно выведенное из регулярного использования. Рассматривается как мрачная, но примечательная достопримечательность, связанная со старой городской историей.",
+    "photos": [
+      "dead_1.png",
+      "dead_2.png"
+    ],
+    "category": "Достопримечательность",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#6E6E6E",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 225,
+    "z": -340,
+    "title": "Озеро",
+    "description": "Небольшое озеро в природной зоне города. Подходит для прогулок, отдыха у воды и спокойного наблюдения за пейзажем.",
+    "photos": [
+      "lake_1.png",
+      "lake_2.png"
+    ],
+    "category": "Природа",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#4A90C2",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -143,
+    "z": -82,
+    "title": "Спортзал",
+    "description": "Городской спортивный зал для тренировок, занятий физической подготовкой и секционных программ.",
+    "photos": [
+      "gym_1.png",
+      "gym_2.png"
+    ],
+    "category": "Спортзал",
+    "address": "",
+    "openingHours": "Ежедневно 08:00–22:00",
+    "pinColor": "#5874A8",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -23,
+    "z": -70,
+    "title": "Городская бесплатная библиотека",
+    "description": "Открытая городская библиотека с бесплатным доступом к книжному фонду, читальным местам и общественным культурным программам.",
+    "photos": [
+      "biblioteka_1.png"
+    ],
+    "category": "Библиотека",
+    "address": "",
+    "openingHours": "Пн–Сб 09:00–19:00",
+    "pinColor": "#7A5C3E",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 12,
+    "z": -144,
+    "title": "Ночной клуб",
+    "description": "Развлекательное заведение с вечерними музыкальными программами, танцевальными площадками и ночными мероприятиями.",
+    "photos": [
+      "night_1.png"
+    ],
+    "category": "Ночной клуб",
+    "address": "",
+    "openingHours": "Чт–Вс 20:00–04:00",
+    "pinColor": "#8E44AD",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 41,
+    "z": -13,
+    "title": "Подводное кафе",
+    "description": "Старейшее кафе города, известное своим необычным названием и атмосферой. Считается одним из узнаваемых старых заведений Лососинска.",
+    "photos": [
+      "kafe_1.png",
+      "kafe_2.png"
+    ],
+    "category": "Кафе",
+    "address": "",
+    "openingHours": "Ежедневно 10:00–23:00",
+    "pinColor": "#2F8FA3",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+      {
+    "x": -140,
+    "z": -423,
+    "title": "Небоскрёб Надежды",
+    "description": "Один из самых узнаваемых высотных объектов Лососинска. Офис большинства международных компаний",
+    "photos": [
+      "skyscriper_1.png",
+      "skyscriper_2.png",
+      "skyscriper_3.png"
+    ],
+    "category": "Небоскрёб",
+    "address": "",
+    "openingHours": "",
+    "pinColor": "#7A8AA0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -60,
+    "z": -390,
+    "title": "Станция монорельса «Офисная»",
+    "description": "Станция монорельса, обслуживающая жёлтую и фиолетовую линии.",
+    "photos": [
+      "ofisna_1.png"
+    ],
+    "category": "Монорельс",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#C98A00",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": -310,
+    "z": -190,
+    "title": "Станция монорельса «Водная»",
+    "description": "Станция монорельса фиолетовой линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Монорельс",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#8E44AD",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": -103,
+    "z": -189,
+    "title": "Торгово-Парковая",
+    "description": "Транспортный узел, объединяющий станцию монорельса фиолетовой линии и станцию метро красной линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Транспортный узел",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#9B59B6",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 56,
+    "z": -178,
+    "title": "Станция метро «Энергетическая»",
+    "description": "Станция метро, обслуживающая синюю и красную линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#3B6FB6",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 193,
+    "z": -153,
+    "title": "Станция метро «Больничная»",
+    "description": "Станция метро красной линии",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#C94A4A",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 287,
+    "z": 52,
+    "title": "Авиационная",
+    "description": "Объединяет станцию метро зелёной линии и станцию монорельса жёлтой линии. Обслуживает аэропорт.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Транспортный узел",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#4E9A51",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 41,
+    "z": 154,
+    "title": "Станция метро «Вокзальная»",
+    "description": "Станция метро синей линии у железнодорожного вокзала.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#3B6FB6",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 40,
+    "z": 84,
+    "title": "Станция метро «Пл. Лососёва»",
+    "description": "Через станцию проходят красная и синяя ветка",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#5A6FAE",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 78,
+    "z": -18,
+    "title": "Станция метро «Центральная»",
+    "description": "Обслуживает зелёную и синюю ветки.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#2F7FA3",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 64,
+    "z": -69,
+    "title": "Станция метро «Школьная»",
+    "description": "Станция метро синей линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#3B6FB6",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": -40,
+    "z": 63,
+    "title": "Станция метро «Судебная»",
+    "description": "Станция метро красной линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#C94A4A",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": -86,
+    "z": -14,
+    "title": "Станция метро «Госструктурная»",
+    "description": "Станция метро, через которую проходят красная и зелёная ветки.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#6A7B53",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": -212,
+    "z": 28,
+    "title": "Тюремная",
+    "description": "Конечная станция зеленой ветки метро. пересадка на оранджевую ветку монорельса",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Транспортный узел",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#8A7A42",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 170,
+    "z": 23,
+    "title": "Станция метро «Промышленная»",
+    "description": "Через станцию проходят красная и зелёная ветка.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Метро",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#7A7F4C",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+      {
+    "x": 114,
+    "z": -373,
+    "title": "Станция монорельса «Лесная»",
+    "description": "Станция монорельса жёлтой линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Монорельс",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#C98A00",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 283,
+    "z": -216,
+    "title": "Станция монорельса «Крепость»",
+    "description": "Станция монорельса жёлтой линии.",
+    "photos": [
+      "placeholder-building.svg"
+    ],
+    "category": "Монорельс",
+    "address": "",
+    "openingHours": "Ежедневно 05:30–00:30",
+    "pinColor": "#C98A00",
+    "labelMinZoom": 8,
+    "dotMinZoom": 6
+  },
+  {
+    "x": 118,
+    "z": -255,
+    "title": "Памятник криперу в шляпе",
+    "description": "Неофициальный городской арт-объект с юмористическим характером. Пользуется популярностью как место для фотографий и один из необычных символов района.",
+    "photos": [
+      "criper_1.png"
+    ],
+    "category": "Арт-объект",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#7A7A7A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 148,
+    "z": 134,
+    "title": "Арт-объект на въезде в город",
+    "description": "Крупный декоративный объект, встречающий гостей на одном из въездов в Лососинск. Служит заметным городским ориентиром и частью визуального образа города.",
+    "photos": [
+      "art_object_1.png",
+      "art_object_2.png"
+    ],
+    "category": "Арт-объект",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#7A7A7A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -148,
+    "z": 190,
+    "title": "Музыкальный магазин «Октава»",
+    "description": "Городской музыкальный магазин, специализирующийся на инструментах, аксессуарах, нотах и сопутствующих товарах для музыкантов.",
+    "photos": [
+      "octava_1.png"
+    ],
+    "category": "Магазин",
+    "address": "",
+    "openingHours": "Пн–Сб 10:00–19:00",
+    "pinColor": "#9B59B6",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 10,
+    "z": 31,
+    "title": "Памятник Лососю",
+    "description": "Памятник символу города, установленный на центральной площади. Является одним из самых узнаваемых городских объектов и популярной точкой встреч.",
+    "photos": [
+      "losos_1.png"
+    ],
+    "category": "Памятник",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#C0C0C0",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -91,
+    "z": -30,
+    "title": "Отделение Почты Лососинска",
+    "description": "Городское почтовое отделение, принимающее и выдающее корреспонденцию, посылки и иные почтовые отправления.",
+    "photos": [
+      "mail_1_1.png"
+    ],
+    "category": "Почта",
+    "address": "",
+    "openingHours": "Пн–Сб 09:00–18:00",
+    "pinColor": "#4F81BD",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -310,
+    "z": -55,
+    "title": "Городской спортивный стадион",
+    "description": "Главный городской стадион для спортивных соревнований, тренировок, массовых мероприятий и открытых занятий.",
+    "photos": [
+      "stadion_1.png",
+      "stadion_2.png"
+    ],
+    "category": "Стадион",
+    "address": "",
+    "openingHours": "Ежедневно 08:00–22:00",
+    "pinColor": "#5A8F5A",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": 147,
+    "z": -144,
+    "title": "Больничный парк",
+    "description": "Озеленённая территория рядом с медицинским комплексом. Используется для прогулок, отдыха посетителей и спокойного пребывания на свежем воздухе.",
+    "photos": [
+      "hospital_park_1.png"
+    ],
+    "category": "Парк",
+    "address": "",
+    "openingHours": "Круглосуточно",
+    "pinColor": "#4F9D69",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+    {
+    "x": 178,
+    "z": -42,
+    "title": "Метеорологический центр",
+    "description": "Городской метеорологический центр, занимающийся наблюдением за погодой, сбором климатических данных и выпуском прогнозов для Лососинска и окрестностей.",
+    "photos": [
+      "meteo_1.png"
+    ],
+    "category": "Госучреждение",
+    "address": "",
+    "openingHours": "Пн–Пт 09:00–18:00",
+    "pinColor": "#5C84C4",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  },
+  {
+    "x": -10,
+    "z": -230,
+    "title": "Здание государственного новостного издания",
+    "description": "Редакция государственного новостного издания Лососинска. Здесь готовятся официальные публикации, информационные сводки и материалы о городской жизни.",
+    "photos": [
+      "news_1.png"
+    ],
+    "category": "Редакция",
+    "address": "",
+    "openingHours": "Пн–Пт 09:00–18:00",
+    "pinColor": "#6E7681",
+    "labelMinZoom": 7,
+    "dotMinZoom": 5
+  }
+  ]
+}

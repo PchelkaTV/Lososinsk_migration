@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero compact-hero">
+  <div class="section-tag">Правовая база</div>
+  <h2>Кодексы и основные нормативные акты</h2>
+  <p>Здесь собраны базовые кодексы Лососинска. Файлы можно заменить своими PDF без изменения структуры сайта.</p>
+</section>
+
+<section class="content-section">
+  <div class="card-grid two-cols">
+    {% for doc in legal_codes %}
+    <article class="doc-card">
+      <h4>{{ doc.title }}</h4>
+      <p>{{ doc.description }}</p>
+      <div class="action-row">
+        <a class="btn btn-primary" href="{{ doc.filename_url }}" target="_blank" rel="noreferrer">Читать</a>
+        <a class="btn btn-secondary" href="{{ doc.filename_url }}" download>Скачать PDF</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_icon %}
+{% block content %}
+<section class="hero compact-hero">
+  <div class="section-tag">Для граждан</div>
+  <h2>Государственные услуги</h2>
+  <p>Единая сервисная среда для жителей, заявителей и участников проекта. Здесь собраны практические обращения, справочные процедуры, записи и электронные формы, которые можно использовать без поиска по разным разделам.</p>
+</section>
+
+<section class="content-section">
+  <div class="section-heading narrow-heading">
+    <h3>Ключевые сервисы</h3>
+  </div>
+  <div class="card-grid three-cols citizen-service-grid">
+    {% for item in citizen_services %}
+    <a class="info-card accent-soft reveal-card clickable-card service-link-card" href="#{{ item.anchor }}">
+      <div class="service-card-top">
+        <div class="section-card-icon">{{ render_icon(item.icon_name, 'icon-md') }}</div>
+        <span class="service-state-badge">{{ item.status }}</span>
+      </div>
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section muted-section" id="status-check">
+  <div class="content-split service-split">
+    <article class="detail-card reveal-card">
+      <h3>Проверка статуса обращения</h3>
+      <p>Введите регистрационный код обращения, чтобы посмотреть текущий этап рассмотрения.</p>
+      <form class="mini-form" data-status-check>
+        <label>
+          <span>Регистрационный код</span>
+          <input type="text" name="status_code" placeholder="Например, LS-2401" autocomplete="off">
+        </label>
+        <button class="btn btn-primary" type="submit">Проверить</button>
+      </form>
+      <div class="status-result" data-status-result>
+        <strong>Примеры кодов</strong>
+        <p>LS-2401, LS-1198, LS-8842, LS-5507.</p>
+      </div>
+    </article>
+    <article class="detail-card reveal-card" id="cabinet">
+      <h3>{{ blocks_data.citizens_page.digital_cabinet.title }}</h3>
+      <p>{{ blocks_data.citizens_page.digital_cabinet.lead }}</p>
+      <div class="text-grid two-text-columns compact-gap compact-top">
+        <article class="text-window compact-window">
+          <h4>Доступно сейчас</h4>
+          <ul class="ground-list compact-list">
+            {% for item in blocks_data.citizens_page.digital_cabinet.features %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </article>
+        <article class="text-window compact-window">
+          <h4>Быстрые действия</h4>
+          <ul class="ground-list compact-list">
+            {% for item in blocks_data.citizens_page.digital_cabinet.quick_actions %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </article>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="content-section" id="admin-status">
+  <div class="content-split service-split">
+    <article class="detail-card reveal-card">
+      <h3>{{ blocks_data.citizens_page.admin_application.title }}</h3>
+      <p>{{ blocks_data.citizens_page.admin_application.lead }}</p>
+      <h4 class="subsection-title small-subtitle">Что потребуется</h4>
+      <ul class="ground-list compact-list">
+        {% for item in blocks_data.citizens_page.admin_application.requirements %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+      <div class="action-row compact-top">
+        <a class="btn btn-primary" href="{{ blocks_data.citizens_page.admin_application.form_url }}" target="_blank" rel="noreferrer">Подать заявку</a>
+      </div>
+    </article>
+    <article class="detail-card reveal-card">
+      <h3>Как подготовить заявку</h3>
+      <ol class="ordered-list">
+        {% for item in blocks_data.citizens_page.admin_application.steps %}<li>{{ item }}</li>{% endfor %}
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section class="content-section muted-section" id="build-grants">
+  <div class="content-split service-split">
+    <article class="detail-card reveal-card">
+      <h3>{{ blocks_data.citizens_page.build_grants.title }}</h3>
+      <p>{{ blocks_data.citizens_page.build_grants.lead }}</p>
+      <div class="grant-list">
+        {% for project in blocks_data.citizens_page.build_grants.projects %}
+        <div class="grant-item">
+          <strong>{{ project.name }}</strong>
+          <span>{{ project.status }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="action-row compact-top">
+        <a class="btn btn-primary" href="{{ blocks_data.citizens_page.build_grants.form_url }}" target="_blank" rel="noreferrer">Подать заявку на грант</a>
+      </div>
+    </article>
+    <article class="detail-card reveal-card">
+      <h3>Что особенно нужно городу</h3>
+      <div class="grant-list compact-top">
+        {% for item in blocks_data.citizens_page.grant_queue %}
+        <div class="grant-item">
+          <strong>{{ item.title }}</strong>
+          <span>{{ item.status }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <h4 class="subsection-title small-subtitle">Минимальный пакет</h4>
+      <ul class="ground-list compact-list">
+        {% for item in blocks_data.citizens_page.build_grants.needed %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="content-section" id="fees">
+  <div class="section-heading narrow-heading">
+    <h3>Сборы и пошлины</h3>
+    <p class="section-note">{{ blocks_data.citizens_page.fees_note }}</p>
+  </div>
+  <div class="card-grid two-cols">
+    {% for fee in blocks_data.citizens_page.fees %}
+    <article class="status-card status-soft reveal-card">
+      <div>
+        <strong>{{ fee.title }}</strong>
+        <p>{{ fee.note }}</p>
+      </div>
+      <span>{{ fee.amount }}</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section muted-section" id="records">
+  <div class="content-split service-split">
+    <article class="detail-card reveal-card">
+      <h3>Реестры и справки</h3>
+      <ul class="ground-list compact-list">
+        {% for item in blocks_data.citizens_page.records %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </article>
+    <article class="detail-card reveal-card" id="appointments">
+      <h3>Запись в ведомства</h3>
+      <p>Записи на визы и легализацию открываются из профильных разделов портала. Для городских сервисов и нестандартных процедур продолжают использоваться тематические формы.</p>
+      <ul class="ground-list compact-list compact-top">
+        {% for status in citizen_service_statuses %}
+        <li><strong>{{ status.label }}</strong> — {{ status.state|lower }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="content-section" id="city-requests">
+  <div class="content-split service-split">
+    <article class="detail-card reveal-card">
+      <h3>{{ blocks_data.citizens_page.city_requests.title }}</h3>
+      <p>{{ blocks_data.citizens_page.city_requests.lead }}</p>
+      <ul class="ground-list compact-list compact-top">
+        {% for item in blocks_data.citizens_page.city_requests.topics %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </article>
+    <article class="detail-card reveal-card">
+      <h3>Форма обращения</h3>
+      <p>Используйте отдельную форму, если нужно сообщить о городской детали, уточнить размещение объекта, предложить улучшение района или запросить корректировку навигации.</p>
+      <div class="action-row compact-top">
+        <a class="btn btn-primary" href="{{ blocks_data.citizens_page.city_requests.form_url }}" target="_blank" rel="noreferrer">Открыть форму</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+(function () {
+  const form = document.querySelector('[data-status-check]');
+  const result = document.querySelector('[data-status-result]');
+  if (!form || !result) return;
+  const statuses = {{ blocks_data.citizens_page.status_demo.codes | tojson }};
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const raw = String(new FormData(form).get('status_code') || '').trim().toUpperCase();
+    if (!raw) {
+      result.innerHTML = '<strong>Нужен код обращения</strong><p>Введите регистрационный номер в формате LS-2401.</p>';
+      return;
+    }
+    const text = statuses[raw] || 'По этому коду опубликован только базовый статус. Для уточнения используйте профильную форму обращения.';
+    result.innerHTML = '<strong>' + raw + '</strong><p>' + text + '</p>';
+  });
+})();
+</script>
+{% endblock %}

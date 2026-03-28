@@ -1,0 +1,193 @@
+{
+  "countries": [
+    {
+      "country": "Тунава",
+      "mode": 2,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/tunava.png",
+      "note": ""
+    },
+    {
+      "country": "Коммунистическая Редонская Республика (КРР)",
+      "mode": 4,
+      "stay_days": null,
+      "flag": "/static/images/country_flags/krr.png",
+      "note": "Контакты между странами осложнены. Въезд запрещен."
+    },
+    {
+      "country": "Вальмир",
+      "mode": 3,
+      "stay_days": 60,
+      "flag": "/static/images/country_flags/valmir.png",
+      "note": ""
+    },
+    {
+      "country": "Корвелия",
+      "mode": 3,
+      "stay_days": 45,
+      "flag": "/static/images/country_flags/korvelia.svg",
+      "note": ""
+    },
+    {
+      "country": "Брестания",
+      "mode": 1,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/brestania.svg",
+      "note": ""
+    },
+    {
+      "country": "Нордевия",
+      "mode": 2,
+      "stay_days": 21,
+      "flag": "/static/images/country_flags/nordevia.svg",
+      "note": ""
+    },
+    {
+      "country": "Лардан",
+      "mode": 3,
+      "stay_days": 90,
+      "flag": "/static/images/country_flags/lardan.svg",
+      "note": ""
+    },
+    {
+      "country": "Меридион",
+      "mode": 1,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/meridion.svg",
+      "note": ""
+    },
+    {
+      "country": "Остравия",
+      "mode": 2,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/ostravia.svg",
+      "note": ""
+    },
+    {
+      "country": "Белмора",
+      "mode": 3,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/belmora.svg",
+      "note": ""
+    },
+    {
+      "country": "Астервия",
+      "mode": 1,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/astervia.svg",
+      "note": "Выдаются только рабочие и деловые визы"
+    },
+    {
+      "country": "Ампур",
+      "mode": 1,
+      "stay_days": 30,
+      "flag": "/static/images/country_flags/ampur.jpg",
+      "note": ""
+    },
+    {
+  "country": "Бахрезид",
+  "mode": 4,
+  "stay_days": 0,
+  "flag": "/static/images/country_flags/bahrezid.svg",
+  "note": "Въезд запрещён. Действуют ограничения из-за вооружённого конфликта и чрезвычайного режима."
+},
+{
+  "country": "Ардахан",
+  "mode": 4,
+  "stay_days": 0,
+  "flag": "/static/images/country_flags/ardakhan.svg",
+  "note": "Въезд запрещён. Действуют ограничения из-за вооружённого конфликта и чрезвычайного режима."
+},
+{
+  "country": "Касрабат",
+  "mode": 1,
+  "stay_days": 21,
+  "flag": "/static/images/country_flags/qasrabat.svg",
+  "note": ""
+},
+{
+  "country": "Зафрания",
+  "mode": 2,
+  "stay_days": 30,
+  "flag": "/static/images/country_flags/zafrania.svg",
+  "note": ""
+},
+{
+  "country": "Дарьястан",
+  "mode": 2,
+  "stay_days": 20,
+  "flag": "/static/images/country_flags/daryastan.svg",
+  "note": ""
+},
+{
+  "country": "Муркестан",
+  "mode": 4,
+  "stay_days": 0,
+  "flag": "/static/images/country_flags/murkestan.svg",
+  "note": ""
+},
+{
+  "country": "Сельварин",
+  "mode": 3,
+  "stay_days": 60,
+  "flag": "/static/images/country_flags/selvarin.svg",
+  "note": ""
+},
+{
+  "country": "Дравония",
+  "mode": 1,
+  "stay_days": 30,
+  "flag": "/static/images/country_flags/dravonia.svg",
+  "note": ""
+},
+{
+  "country": "Карпадор",
+  "mode": 3,
+  "stay_days": 45,
+  "flag": "/static/images/country_flags/karpador.svg",
+  "note": ""
+},
+{
+  "country": "Велград",
+  "mode": 3,
+  "stay_days": 90,
+  "flag": "/static/images/country_flags/velgrad.svg",
+  "note": ""
+},
+{
+  "country": "Норвакия",
+  "mode": 3,
+  "stay_days": 30,
+  "flag": "/static/images/country_flags/norvakia.svg",
+  "note": ""
+},
+{
+  "country": "Трезовия",
+  "mode": 2,
+  "stay_days": 15,
+  "flag": "/static/images/country_flags/trezovia.svg",
+  "note": ""
+},
+{
+  "country": "Ормеда",
+  "mode": 1,
+  "stay_days": 30,
+  "flag": "/static/images/country_flags/ormeda.svg",
+  "note": ""
+},
+{
+  "country": "Хальмар",
+  "mode": 2,
+  "stay_days": 10,
+  "flag": "/static/images/country_flags/khalmar.svg",
+  "note": ""
+},
+{
+  "country": "Яркут",
+  "mode": 4,
+  "stay_days": 0,
+  "flag": "/static/images/country_flags/yarqut.svg",
+  "note": ""
+}
+  ]
+}

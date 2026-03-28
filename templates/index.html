@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_icon %}
+{% block content %}
+<section class="hero hero-home">
+  <div class="hero-copy compact-width">
+    <div class="section-tag">{{ homepage.tag }}</div>
+    <h2>{{ homepage.title }}</h2>
+    <p>{{ homepage.lead }}</p>
+  </div>
+</section>
+
+<section class="content-section hero-slider-section">
+  <div class="hero-slider" data-hero-slider>
+    <div class="hero-slider-track">
+      {% for slide in homepage_blocks.slides %}
+      <article class="hero-slide {% if loop.first %}is-active{% endif %}" data-hero-slide>
+        <img src="{{ slide.src }}" alt="{{ slide.title }}">
+        <div class="hero-slide-caption">
+          <strong>{{ slide.title }}</strong>
+          <span>{{ slide.subtitle }}</span>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="hero-slider-dots">
+      {% for slide in homepage_blocks.slides %}
+      <button type="button" class="hero-slider-dot {% if loop.first %}is-active{% endif %}" data-hero-dot aria-label="Слайд {{ loop.index }}"></button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+<section class="content-section prose-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">{{ homepage.description_title }}</div>
+    <h3>{{ homepage.description_subtitle }}</h3>
+  </div>
+  <div class="text-grid two-text-columns">
+    {% for paragraph in homepage_blocks.official_intro %}
+    <article class="text-window"><p>{{ paragraph }}</p></article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section showcase-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">Для первого знакомства</div>
+    <h3>Что стоит увидеть в Лососинске</h3>
+  </div>
+  <div class="showcase-stack">
+    {% for item in homepage_blocks.showcase_rows %}
+    <article class="showcase-row {% if item.reverse %}showcase-row-reverse{% endif %}">
+      <div class="showcase-media">
+        <img src="{{ item.src }}" alt="{{ item.title }}">
+      </div>
+      <div class="showcase-copy">
+        <div class="section-tag">Городской ориентир</div>
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section muted-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">Почему выбирают Лососинск</div>
+    <h3>Плюсы Лососинска для туризма и жизни</h3>
+  </div>
+  <div class="card-grid four-cols">
+    {% for item in homepage_blocks.tourist_benefits %}
+    <article class="info-card accent-soft reveal-card">
+      <div class="section-card-icon">{{ item.icon }}</div>
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+
+<section class="content-section muted-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">Перед поездкой</div>
+    <h3>Что стоит подготовить заранее</h3>
+  </div>
+  <div class="card-grid three-cols">
+    {% for item in homepage_blocks.visit_checklist %}
+    <article class="info-card accent-soft reveal-card">
+      <div class="section-card-icon">{{ item.icon }}</div>
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section important-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">Основные разделы</div>
+    <h3>Ключевые разделы портала</h3>
+  </div>
+  <div class="card-grid three-cols important-grid">
+    {% for section in homepage_sections %}
+    <a class="info-card {{ section.accent }} reveal-card clickable-card" href="{{ section.endpoint }}">
+      <div class="section-card-icon">{{ section.icon }}</div>
+      <h4>{{ section.title }}</h4>
+      <p>{{ section.text }}</p>
+      <div class="inline-link">Перейти в раздел</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function () {
+  const root = document.querySelector('[data-hero-slider]');
+  if (!root) return;
+  const slides = Array.from(root.querySelectorAll('[data-hero-slide]'));
+  const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
+  let current = 0; let timerId;
+  function activate(index) {
+    current = index;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+  }
+  function next() { activate((current + 1) % slides.length); }
+  function start() { window.clearInterval(timerId); timerId = window.setInterval(next, 4600); }
+  dots.forEach((dot, index) => dot.addEventListener('click', () => { activate(index); start(); }));
+  activate(0); start();
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero compact-hero">
+  <div class="section-tag">{{ gallery_page.tag }}</div>
+  <h2>{{ gallery_page.title }}</h2>
+  <p>{{ gallery_page.lead }}</p>
+</section>
+
+<section class="content-section">
+  <div class="gallery-grid rich-gallery-grid">
+    {% for item in gallery_items %}
+    <button type="button" class="gallery-card" data-lightbox-trigger data-image-src="{{ item.src }}" data-image-title="{{ item.title }}" data-image-subtitle="{{ item.subtitle }}">
+      <img src="{{ item.src }}" alt="{{ item.title }}">
+      <span class="gallery-card-overlay">
+        <strong>{{ item.title }}</strong>
+        <small>{{ item.subtitle }}</small>
+      </span>
+    </button>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="lightbox" data-lightbox hidden>
+  <button type="button" class="lightbox-backdrop" data-lightbox-close aria-label="Закрыть"></button>
+  <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Просмотр изображения">
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Закрыть">×</button>
+    <img src="" alt="" data-lightbox-image>
+    <div class="lightbox-caption">
+      <strong data-lightbox-title></strong>
+      <span data-lightbox-subtitle></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const root = document.querySelector('[data-lightbox]');
+    if (!root) return;
+    const image = root.querySelector('[data-lightbox-image]');
+    const title = root.querySelector('[data-lightbox-title]');
+    const subtitle = root.querySelector('[data-lightbox-subtitle]');
+
+    function openLightbox(trigger) {
+      image.src = trigger.dataset.imageSrc;
+      image.alt = trigger.dataset.imageTitle || '';
+      title.textContent = trigger.dataset.imageTitle || '';
+      subtitle.textContent = trigger.dataset.imageSubtitle || '';
+      root.hidden = false;
+      document.body.classList.add('lightbox-open');
+    }
+
+    function closeLightbox() {
+      root.hidden = true;
+      image.src = '';
+      image.alt = '';
+      title.textContent = '';
+      subtitle.textContent = '';
+      document.body.classList.remove('lightbox-open');
+    }
+
+    document.querySelectorAll('[data-lightbox-trigger]').forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger)));
+    root.querySelectorAll('[data-lightbox-close]').forEach((button) => button.addEventListener('click', closeLightbox));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !root.hidden) closeLightbox();
+    });
+  })();
+</script>
+{% endblock %}

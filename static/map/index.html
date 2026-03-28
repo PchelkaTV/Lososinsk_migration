@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Карта Лососинска</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="lib/ol.css">
+    <script src="lib/ol.js"></script>
+    <link href="lib/ol-contextmenu.css" rel="stylesheet">
+    <script src="lib/ol-contextmenu.iife.js"></script>
+    <script type="text/javascript" src="lib/toastify-js.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/toastify-js.min.css">
+    <script type="text/javascript" src="unmined.map.properties.js"></script>
+    <script type="text/javascript" src="unmined.map.regions.js"></script>
+    <script type="text/javascript" src="unmined.map.players.js"></script>
+    <script type="text/javascript" src="custom.markers.js"></script>
+    <script type="text/javascript" src="unmined.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+    <a class="map-back-button" href="/">← Назад на сайт</a>
+    <div id="map"></div>
+    <aside id="place-panel" class="place-panel" aria-hidden="true">
+        <div class="place-panel__header-bar">
+            <button id="place-panel-close" class="place-panel__close" type="button" aria-label="Закрыть карточку">×</button>
+        </div>
+        <div class="place-panel__hero">
+            <img id="place-main-photo" class="place-panel__hero-photo" alt="">
+        </div>
+        <div class="place-panel__content">
+            <div class="place-panel__eyebrow-row">
+                <div id="place-category" class="place-panel__category"></div>
+                <div id="place-status-badge" class="place-panel__status-badge"></div>
+            </div>
+            <h1 id="place-title" class="place-panel__title">Объект Лососинска</h1>
+            <div id="place-address" class="place-panel__address">—</div>
+            <div class="place-panel__tabs" role="tablist" aria-label="Карточка объекта">
+                <button id="tab-overview" class="place-panel__tab is-active" type="button" data-tab="overview" role="tab" aria-selected="true">Обзор</button>
+                <button id="tab-photos" class="place-panel__tab" type="button" data-tab="photos" role="tab" aria-selected="false">Фото</button>
+            </div>
+            <section id="panel-overview" class="place-panel__tab-panel is-active" data-panel="overview">
+                <p id="place-description" class="place-panel__description">Нажми на объект на карте, чтобы открыть карточку.</p>
+                <div class="place-panel__meta-grid">
+                    <div class="place-panel__meta-item">
+                        <div class="place-panel__meta-label">Координаты</div>
+                        <div id="place-coordinates" class="place-panel__meta-value">—</div>
+                    </div>
+                    <div class="place-panel__meta-item">
+                        <div class="place-panel__meta-label">Режим работы</div>
+                        <div id="place-hours" class="place-panel__meta-value">Не указан</div>
+                    </div>
+                </div>
+            </section>
+            <section id="panel-photos" class="place-panel__tab-panel" data-panel="photos">
+                <div id="place-photo-list" class="place-panel__photo-list"></div>
+                <div id="place-photo-empty" class="place-panel__photo-empty">Фотографии пока не добавлены.</div>
+            </section>
+        </div>
+    </aside>
+    <div id="map-status" class="map-status">Загрузка карты…</div>
+    <script type="text/javascript">
+        (function () {
+            const panel = document.getElementById('place-panel');
+            const closeButton = document.getElementById('place-panel-close');
+            const status = document.getElementById('map-status');
+            const category = document.getElementById('place-category');
+            const statusBadge = document.getElementById('place-status-badge');
+            const title = document.getElementById('place-title');
+            const address = document.getElementById('place-address');
+            const description = document.getElementById('place-description');
+            const coordinates = document.getElementById('place-coordinates');
+            const hours = document.getElementById('place-hours');
+            const mainPhoto = document.getElementById('place-main-photo');
+            const photoList = document.getElementById('place-photo-list');
+            const photoEmpty = document.getElementById('place-photo-empty');
+            const tabButtons = Array.from(document.querySelectorAll('.place-panel__tab'));
+            const tabPanels = Array.from(document.querySelectorAll('.place-panel__tab-panel'));
+
+            function setActiveTab(name) {
+                tabButtons.forEach((button) => {
+                    const active = button.dataset.tab === name;
+                    button.classList.toggle('is-active', active);
+                    button.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                tabPanels.forEach((panelEl) => {
+                    panelEl.classList.toggle('is-active', panelEl.dataset.panel === name);
+                });
+            }
+            tabButtons.forEach((button) => button.addEventListener('click', () => setActiveTab(button.dataset.tab)));
+
+            function closePanel() {
+                panel.classList.remove('is-open');
+                panel.setAttribute('aria-hidden', 'true');
+            }
+
+            function renderPhotos(photos, titleText) {
+                const resolved = Array.isArray(photos) && photos.length ? photos : [LososinskMapData.resolvePhotoUrl('placeholder-building.svg')];
+                mainPhoto.src = resolved[0];
+                mainPhoto.alt = titleText || 'Фотография объекта';
+                mainPhoto.onerror = function () {
+                    mainPhoto.src = LososinskMapData.resolvePhotoUrl('placeholder-building.svg');
+                };
+                photoList.innerHTML = '';
+                const hasRealPhotos = Array.isArray(photos) && photos.length > 0;
+                photoEmpty.style.display = hasRealPhotos ? 'none' : 'block';
+                resolved.forEach((photoSrc, index) => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'place-panel__photo-card' + (index === 0 ? ' is-active' : '');
+                    button.innerHTML = '<img src="' + photoSrc + '" alt="' + (titleText || 'Фото объекта') + ' ' + (index + 1) + '" class="place-panel__photo-card-image">' +
+                        '<span class="place-panel__photo-card-label">Фото ' + (index + 1) + '</span>';
+                    const img = button.querySelector('img');
+                    img.onerror = function () { img.src = LososinskMapData.resolvePhotoUrl('placeholder-building.svg'); };
+                    button.addEventListener('click', function () {
+                        mainPhoto.src = photoSrc;
+                        Array.from(photoList.children).forEach((el) => el.classList.remove('is-active'));
+                        button.classList.add('is-active');
+                    });
+                    photoList.appendChild(button);
+                });
+            }
+
+            function openPanel(marker) {
+                const photos = Array.isArray(marker.photos) ? marker.photos : [];
+                category.textContent = marker.category || 'Объект';
+                statusBadge.textContent = marker.openingHours ? 'По режиму' : '';
+                statusBadge.style.display = marker.openingHours ? 'inline-flex' : 'none';
+                title.textContent = marker.title || marker.text || 'Объект Лососинска';
+                address.textContent = marker.address || 'Адрес не указан';
+                description.textContent = marker.description || 'Описание объекта пока не заполнено.';
+                coordinates.textContent = marker.x + ', ' + marker.z;
+                hours.textContent = marker.openingHours || 'Не указан';
+                renderPhotos(photos, marker.title || marker.text || 'Объект');
+                setActiveTab('overview');
+                panel.classList.add('is-open');
+                panel.setAttribute('aria-hidden', 'false');
+            }
+
+            function attachMarkerInteraction(unmined) {
+                const map = unmined.olMap;
+                map.on('singleclick', function (evt) {
+                    let markerData = null;
+                    map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+                        const data = feature.get('markerData');
+                        if (data) {
+                            markerData = data;
+                            return true;
+                        }
+                        return false;
+                    }, { hitTolerance: 8 });
+                    if (markerData) openPanel(markerData);
+                    else closePanel();
+                });
+                map.on('pointermove', function (evt) {
+                    const hit = map.hasFeatureAtPixel(evt.pixel, {
+                        hitTolerance: 8,
+                        layerFilter: function (layer) {
+                            return layer && layer.get && layer.get('lososinskLayerType') === 'markers';
+                        }
+                    });
+                    map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+                });
+            }
+
+            closeButton.addEventListener('click', closePanel);
+            window.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') closePanel();
+            });
+
+            async function initMap() {
+                try {
+                    document.title = UnminedMapProperties.worldName + ' - Карта Лососинска';
+                    await LososinskMapData.load('markers.json');
+                    if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
+                        UnminedMapProperties.markers = (UnminedMapProperties.markers || []).concat(UnminedCustomMarkers.markers);
+                    }
+                    if (Array.isArray(window.UnminedPlayers) && UnminedPlayers.length > 0) {
+                        UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(UnminedPlayers);
+                    }
+                    const mapElement = document.getElementById('map');
+                    const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+                    window.LOSOSINSK_UNMINED = unmined;
+                    attachMarkerInteraction(unmined);
+                    status.classList.add('is-soft');
+                    status.textContent = 'Карта загружена';
+                    window.setTimeout(() => status.classList.add('is-hidden'), 1200);
+                } catch (error) {
+                    console.error(error);
+                    status.classList.remove('is-soft');
+                    status.classList.remove('is-hidden');
+                    status.innerHTML = 'Карта не инициализирована. Проверь наличие папок <code>lib/</code>, <code>tiles/</code>, файлов <code>unmined.map.*</code> и корректность <code>markers.json</code>.';
+                }
+            }
+            initMap();
+        })();
+    </script>
+</body>
+</html>

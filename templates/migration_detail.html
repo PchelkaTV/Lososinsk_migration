@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_icon %}
+{% block content %}
+<section class="hero compact-hero detail-hero">
+  
+  <h2>{{ migration_item.title }}</h2>
+  <p>{{ migration_item.summary }}</p>
+  <div class="action-row centered"><a class="btn btn-secondary" href="{{ url_for('migration') }}">{{ migration_page.detail_back }}</a></div>
+</section>
+
+<section class="content-section">
+  <div class="content-split">
+    <div class="content-main-column">
+      <article class="detail-card reveal-card">
+        <div class="detail-card-head {{ migration_item.color }} modern-panel-head">
+          <div class="section-card-icon large">{{ render_icon(migration_item.icon_name, 'icon-lg') }}</div>
+          <div><h3>{{ migration_item.title }}</h3></div>
+        </div>
+        <div class="metric-grid">{% for item in migration_item.details %}<div class="metric-card"><div class="metric-label">{{ item.label }}</div><div class="metric-value">{{ item.value }}</div></div>{% endfor %}</div>
+        <div class="text-grid two-text-columns compact-gap">
+          <article class="text-window"><h4>Преимущества</h4><ul class="ground-list compact-list">{% for item in migration_item.benefits %}<li>{{ item }}</li>{% endfor %}</ul></article>
+          <article class="text-window"><h4>Полный пакет документов</h4><ul class="ground-list compact-list">{% for item in migration_item.full_documents %}<li>{{ item }}</li>{% endfor %}</ul></article>
+        </div>
+      </article>
+
+      {% if migration_item.pathways %}
+      <section class="detail-subsection">
+        <div class="section-heading narrow-heading"><div class="section-tag">Основания оформления</div><h3>Выбор основания для {{ migration_item.short_name }}</h3></div>
+        <div class="card-grid two-cols">
+          {% for pathway in migration_item.pathways %}
+          <article class="category-detailed-card reveal-card" {% if migration_item.slug == 'other-status' and loop.first %}id="request-case"{% endif %}>
+            <div class="category-code">Основание</div>
+            <h4>{{ pathway.title }}</h4>
+            <p>{{ pathway.summary }}</p>
+            <ul class="ground-list compact-list pathway-list">{% for doc in pathway.documents %}<li>{{ doc }}</li>{% endfor %}</ul>
+            {% if pathway.request_form_url %}
+            <div class="action-row compact-top"><a class="btn btn-primary" href="{{ pathway.request_form_url }}" target="_blank" rel="noreferrer">Подать запрос кейса</a></div>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      <section class="detail-subsection">
+        <div class="card-grid two-cols">
+          <article class="doc-card accent-green"><h4>Подробнее</h4><p>Откройте подробный PDF с документами и порядком оформления по выбранному статусу.</p><div class="action-row"><a class="btn btn-primary" href="{{ migration_item.guide_url }}" target="_blank" rel="noreferrer">Открыть PDF</a><a class="btn btn-secondary" href="{{ migration_item.guide_url }}" download>Скачать PDF</a></div></article>
+          {% if migration_item.slug != 'other-status' %}
+          <article class="doc-card"><h4>Запись на подачу</h4><p>Выберите удобный слот справа и перейдите к подаче по выбранному статусу.</p></article>
+          {% else %}
+          <article class="doc-card"><h4>Специальный порядок</h4><p>По политическому убежищу и статусу апатрида сначала подаётся запрос кейса. После оценки обстоятельств определяется пакет документов и назначается индивидуальное окно рассмотрения.</p></article>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+    <aside class="content-side-column">
+      {% if migration_item.slug != 'other-status' %}
+      <article class="detail-card slot-card reveal-card"><h3>{{ migration_page.slots_title }}</h3><p>{{ migration_page.slots_text }}</p><div class="slot-list">{% for slot in appointment_slots %}<div class="slot-item slot-item-open"><div class="slot-meta"><strong>{{ slot.label }}</strong><span>{{ slot.audience }}</span></div><div class="slot-side"><a class="btn btn-primary btn-small" href="{{ slot.apply_url }}" target="_blank" rel="noreferrer">Подать</a></div></div>{% endfor %}</div></article>
+      {% else %}
+      <article class="detail-card slot-card reveal-card"><h3>Запрос кейса</h3><p>По специальным решениям свободные слоты не публикуются заранее. Выберите основание ниже и направьте запрос на индивидуальное рассмотрение.</p><div class="slot-list"><div class="slot-item slot-item-open"><div class="slot-meta"><strong>Индивидуальное назначение</strong><span>После проверки обстоятельств и предварительных материалов</span></div><div class="slot-side"><a class="btn btn-primary btn-small" href="#request-case">Выбрать основание</a></div></div></div></article>
+      {% endif %}
+    </aside>
+  </div>
+</section>
+{% endblock %}

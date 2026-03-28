@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_icon %}
+{% block content %}
+<section class="hero compact-hero detail-hero">
+  
+  <h2>{{ visa_item.title }}</h2>
+  <p>{{ visa_item.summary }}</p>
+  <div class="action-row centered"><a class="btn btn-secondary" href="{{ url_for('visa') }}">{{ visa_page.detail_back }}</a></div>
+</section>
+
+<section class="content-section">
+  <div class="content-split">
+    <div class="content-main-column">
+      <article class="detail-card reveal-card">
+        <div class="detail-card-head {{ visa_item.color }} modern-panel-head">
+          <div class="section-card-icon large">{{ render_icon(visa_item.icon_name, 'icon-lg') }}</div>
+          <div><h3>{{ visa_item.title }}</h3></div>
+        </div>
+        <div class="metric-grid">{% for item in visa_item.details %}<div class="metric-card"><div class="metric-label">{{ item.label }}</div><div class="metric-value">{{ item.value }}</div></div>{% endfor %}</div>
+        <div class="text-grid two-text-columns compact-gap">
+          <article class="text-window"><h4>Преимущества</h4><ul class="ground-list compact-list">{% for item in visa_item.benefits %}<li>{{ item }}</li>{% endfor %}</ul></article>
+          <article class="text-window"><h4>Полный пакет документов</h4><ul class="ground-list compact-list">{% for item in visa_item.full_documents %}<li>{{ item }}</li>{% endfor %}</ul></article>
+        </div>
+        {% if visa_item.categories %}
+        <section class="detail-subsection">
+          <h4 class="subsection-title">Категории визы</h4>
+          <div class="card-grid two-cols">{% for category in visa_item.categories %}<article class="category-detailed-card"><div class="category-code">Категория {{ category.code }}</div><h4>{{ category.title }}</h4><p>{{ category.text }}</p></article>{% endfor %}</div>
+        </section>
+        {% endif %}
+      </article>
+
+      <section class="detail-subsection">
+        <div class="card-grid two-cols">
+          <article class="doc-card accent-blue"><h4>Подробнее</h4><p>Откройте подробный PDF с документами и порядком подачи по выбранной визе.</p><div class="action-row"><a class="btn btn-primary" href="{{ visa_item.guide_url }}" target="_blank" rel="noreferrer">Открыть PDF</a><a class="btn btn-secondary" href="{{ visa_item.guide_url }}" download>Скачать PDF</a></div></article>
+          <article class="doc-card"><h4>Запись на подачу</h4><p>Выберите удобный слот справа и перейдите к подаче по выбранной визе.</p></article>
+        </div>
+      </section>
+    </div>
+    <aside class="content-side-column"><article class="detail-card slot-card reveal-card"><h3>{{ visa_page.slots_title }}</h3><p>{{ visa_page.slots_text }}</p><div class="slot-list">{% for slot in appointment_slots %}<div class="slot-item slot-item-open"><div class="slot-meta"><strong>{{ slot.label }}</strong><span>{{ slot.audience }}</span></div><div class="slot-side"><a class="btn btn-primary btn-small" href="{{ slot.apply_url }}" target="_blank" rel="noreferrer">Подать</a></div></div>{% endfor %}</div></article></aside>
+  </div>
+</section>
+{% endblock %}

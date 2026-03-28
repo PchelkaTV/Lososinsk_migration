@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero compact-hero inside-hero converter-hero">
+  <div class="section-tag">{{ inside_page.tag }}</div>
+  <h2>{{ inside_page.title }}</h2>
+  <p>{{ inside_page.lead }}</p>
+</section>
+
+<section class="content-section converter-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">Конвертер</div>
+    <h3>Выберите валютную пару и сразу посмотрите текущий курс, обратный курс и изменение за день, месяц и год.</h3>
+  </div>
+
+  <div class="card-grid three-cols compact-top converter-intro-grid">
+    {% for card in inside_blocks.intro_cards %}
+    <article class="text-window reveal-card converter-intro-card">
+      <div class="converter-intro-icon">{{ card.icon }}</div>
+      <h4>{{ card.title }}</h4>
+      <p>{{ card.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="converter-shell" data-converter-root data-market='{{ market_payload | tojson }}'>
+    <div class="converter-main-card">
+      <div class="converter-panel-head">
+        <div>
+          <div class="section-tag">Актуальный курс</div>
+          <h3>Быстрый расчёт в лоринах и привычных валютах</h3>
+          <p>Подходит для оценки бюджета поездки, расходов на месте и повседневных расчётов по отношению к лорину.</p>
+        </div>
+      </div>
+
+      <div class="converter-grid">
+        <div class="converter-side">
+          <label class="field-label" for="converter-from">Из валюты</label>
+          <div class="currency-picker">
+            <select class="field-input" id="converter-from" data-converter-from>
+              {% for item in market_snapshot.currencies %}
+              <option value="{{ item.code }}" {% if item.code == 'EUR' %}selected{% endif %}>{{ item.label }} ({{ item.symbol }})</option>
+              {% endfor %}
+            </select>
+            <input class="field-input" type="number" min="0" step="0.01" value="100" data-converter-amount>
+          </div>
+        </div>
+
+        <button class="swap-button" type="button" data-converter-swap aria-label="Поменять валюты местами">
+          <span>⇄</span>
+        </button>
+
+        <div class="converter-side">
+          <label class="field-label" for="converter-to">В валюту</label>
+          <div class="currency-picker">
+            <select class="field-input" id="converter-to" data-converter-to>
+              {% for item in market_snapshot.currencies %}
+              <option value="{{ item.code }}" {% if item.code == 'LOR' %}selected{% endif %}>{{ item.label }} ({{ item.symbol }})</option>
+              {% endfor %}
+            </select>
+            <input class="field-input" type="text" value="0" readonly data-converter-result>
+          </div>
+        </div>
+      </div>
+
+      <div class="converter-stats-grid compact-top five-cols">
+        <article class="metric-card">
+          <div class="metric-label">Текущий курс пары</div>
+          <div class="metric-value" data-converter-rate></div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label" data-direct-label></div>
+          <div class="metric-value" data-converter-direct></div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label" data-reverse-label></div>
+          <div class="metric-value" data-converter-reverse></div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">За сегодня</div>
+          <div class="metric-value" data-change-today></div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">За месяц</div>
+          <div class="metric-value" data-change-month></div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">За год</div>
+          <div class="metric-value" data-change-year></div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="converter-sidebar">
+      <article class="detail-card">
+        <div class="section-tag">Быстрый конвертер</div>
+        <div class="quick-card-topbar">
+          <h4>Ориентиры по валютам</h4>
+          <div class="quick-view-toggle" data-quick-toggle>
+            <button type="button" class="quick-chip is-active" data-quick-view="from_lor">1 LOR</button>
+            <button type="button" class="quick-chip" data-quick-view="to_lor">1 валюта</button>
+          </div>
+        </div>
+        <div class="currency-card-stack compact-top" data-quick-cards></div>
+      </article>
+      <article class="detail-card compact-top">
+        <div class="section-tag">Подсказки</div>
+        <h4>Что удобно посчитать</h4>
+        <ul class="ground-list compact-list compact-top">
+          {% for tip in inside_blocks.tips %}<li>{{ tip }}</li>{% endfor %}
+        </ul>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<script>
+(function () {
+  const root = document.querySelector('[data-converter-root]');
+  if (!root) return;
+  const payload = JSON.parse(root.dataset.market || '{}');
+  const currencies = payload.currencies || [];
+  const currentRates = payload.current_rates || {};
+  const snapshots = payload.snapshots || {};
+  const fromSelect = root.querySelector('[data-converter-from]');
+  const toSelect = root.querySelector('[data-converter-to]');
+  const amountInput = root.querySelector('[data-converter-amount]');
+  const resultInput = root.querySelector('[data-converter-result]');
+  const rateOut = root.querySelector('[data-converter-rate]');
+  const directLabel = root.querySelector('[data-direct-label]');
+  const reverseLabel = root.querySelector('[data-reverse-label]');
+  const directOut = root.querySelector('[data-converter-direct]');
+  const reverseOut = root.querySelector('[data-converter-reverse]');
+  const quickCards = root.querySelector('[data-quick-cards]');
+  const quickToggle = root.querySelector('[data-quick-toggle]');
+  const changeToday = root.querySelector('[data-change-today]');
+  const changeMonth = root.querySelector('[data-change-month]');
+  const changeYear = root.querySelector('[data-change-year]');
+  let quickMode = 'from_lor';
+
+  function decimalsFor(value) {
+    const abs = Math.abs(Number(value || 0));
+    if (abs >= 1000) return 2;
+    if (abs >= 100) return 2;
+    if (abs >= 10) return 3;
+    if (abs >= 1) return 4;
+    if (abs >= 0.1) return 4;
+    return 5;
+  }
+
+  function formatNumber(value, digits) {
+    const d = typeof digits === 'number' ? digits : decimalsFor(value);
+    return Number(value).toLocaleString('ru-RU', {
+      minimumFractionDigits: d,
+      maximumFractionDigits: d,
+    });
+  }
+
+  function formatChange(value) {
+    return `${value >= 0 ? '+' : ''}${formatNumber(value, 2)}%`;
+  }
+
+  function getCurrency(code) {
+    return currencies.find((item) => item.code === code) || currencies[0];
+  }
+
+  function getPairRate(rates, fromCode, toCode) {
+    const fromValue = Number(rates[fromCode] || 0);
+    const toValue = Number(rates[toCode] || 0);
+    if (!fromValue || !toValue) return 0;
+    return fromValue / toValue;
+  }
+
+  function pairChange(period, fromCode, toCode) {
+    const current = getPairRate(currentRates, fromCode, toCode);
+    const baseRates = snapshots[period] || currentRates;
+    const previous = getPairRate(baseRates, fromCode, toCode);
+    if (!current || !previous) return 0;
+    return ((current - previous) / previous) * 100;
+  }
+
+  function renderQuickCards() {
+    const rows = currencies.filter((item) => item.code !== 'LOR').map((item) => {
+      const value = quickMode === 'from_lor' ? item.from_lorin : item.to_lorin;
+      const label = quickMode === 'from_lor'
+        ? `1 LOR = ${formatNumber(value)} ${item.code}`
+        : `1 ${item.code} = ${formatNumber(value)} LOR`;
+      return `
+        <div class="currency-quick-card">
+          <div>
+            <strong>${item.symbol} ${item.code}</strong>
+            <span>${item.label}</span>
+          </div>
+          <b>${label}</b>
+        </div>`;
+    }).join('');
+    quickCards.innerHTML = rows;
+    quickToggle.querySelectorAll('[data-quick-view]').forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.quickView === quickMode);
+    });
+  }
+
+  function update() {
+    const fromCode = fromSelect.value;
+    const toCode = toSelect.value;
+    const amount = Number(amountInput.value || '0');
+    const from = getCurrency(fromCode);
+    const to = getCurrency(toCode);
+    const currentPair = getPairRate(currentRates, fromCode, toCode);
+    resultInput.value = formatNumber(amount * currentPair, 2);
+    rateOut.textContent = `1 ${from.code} = ${formatNumber(currentPair)} ${to.code}`;
+
+    directLabel.textContent = `1 ${from.code}`;
+    directOut.textContent = `${formatNumber(currentPair)} ${to.code}`;
+    reverseLabel.textContent = `1 ${to.code}`;
+    reverseOut.textContent = `${formatNumber(currentPair ? 1 / currentPair : 0)} ${from.code}`;
+
+    changeToday.textContent = formatChange(pairChange('today', fromCode, toCode));
+    changeMonth.textContent = formatChange(pairChange('month', fromCode, toCode));
+    changeYear.textContent = formatChange(pairChange('year', fromCode, toCode));
+  }
+
+  root.querySelector('[data-converter-swap]').addEventListener('click', () => {
+    const previous = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = previous;
+    update();
+  });
+
+  [fromSelect, toSelect, amountInput].forEach((el) => el.addEventListener('input', update));
+  quickToggle.querySelectorAll('[data-quick-view]').forEach((button) => {
+    button.addEventListener('click', () => {
+      quickMode = button.dataset.quickView;
+      renderQuickCards();
+    });
+  });
+
+  renderQuickCards();
+  update();
+})();
+</script>
+{% endblock %}

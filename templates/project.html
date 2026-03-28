@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero compact-hero">
+  <div class="section-tag">{{ project_page.tag }}</div>
+  <h2>{{ project_page.title }}</h2>
+  <p>{{ project_page.lead }}</p>
+</section>
+
+<section class="content-section prose-section">
+  <div class="text-grid two-text-columns">
+    {% for paragraph in project_blocks.paragraphs %}<article class="text-window"><p>{{ paragraph }}</p></article>{% endfor %}
+  </div>
+</section>
+
+<section class="content-section muted-section">
+  <div class="section-heading narrow-heading"><div class="section-tag">Полезные материалы</div><h3>Карта города, официальный Telegram-канал, Wiki и путеводитель</h3></div>
+  <div class="card-grid two-cols home-service-grid">
+    {% for item in project_blocks.official_sections %}
+    <article class="info-card {{ item.accent }} reveal-card">
+      <div class="section-card-icon">{{ item.icon }}</div>
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+      <div class="action-row">
+        {% if item.link_type == 'internal' %}
+        <a class="btn btn-secondary" href="{{ item.href }}">{{ item.button }}</a>
+        {% elif item.link_type == 'external' and item.href == 'telegram' %}
+        <a class="btn btn-secondary" href="{{ site.telegram_news_url }}" target="_blank" rel="noreferrer">{{ item.button }}</a>
+        {% elif item.link_type == 'external' and item.href == 'wiki' %}
+        <a class="btn btn-secondary" href="{{ site.wiki_url }}" target="_blank" rel="noreferrer">{{ item.button }}</a>
+        {% else %}
+        <a class="btn btn-secondary" href="{{ url_for('static', filename='docs/' + item.filename) }}" target="_blank" rel="noreferrer">{{ item.button }}</a>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+
+<section class="content-section muted-section">
+  <div class="section-heading narrow-heading"><div class="section-tag">Почему стоит выбрать Лососинск</div><h3>Почему Лососинск удобен для визита, жизни и работы</h3></div>
+  <div class="card-grid four-cols">
+    {% for item in project_blocks.reason_cards %}
+    <article class="info-card accent-soft reveal-card">
+      <div class="section-card-icon">{{ item.icon }}</div>
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="section-heading narrow-heading"><div class="section-tag">Что полезно знать</div><h3>Что помогает быстрее понять город и подготовиться к поездке</h3></div>
+  <div class="card-grid two-cols">
+    {% for item in project_blocks.development_points %}
+    <article class="info-card reveal-card">
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

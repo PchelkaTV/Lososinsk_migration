@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="560" viewBox="0 0 1600 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="560" fill="#FFFFFF"/>
+
+  <rect x="18" y="18" width="1564" height="524" rx="24" fill="#FFFFFF" stroke="#ECECEF" stroke-width="2"/>
+  <rect x="34" y="34" width="1532" height="492" rx="20" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="2" stroke-dasharray="8 10"/>
+
+  <g opacity="0.96" transform="translate(0,-6)">
+    <rect x="694" y="126" width="212" height="154" rx="18" fill="#FAFAFB" stroke="#D8D8DE" stroke-width="3"/>
+    <circle cx="853" cy="170" r="14" fill="#D3D3DA"/>
+    <path d="M724 246L777 193L822 232L860 196L876 212V250H724V246Z" fill="#D3D3DA"/>
+  </g>
+
+  <rect x="742" y="306" width="116" height="5" rx="2.5" fill="#D9D9DF"/>
+  <rect x="676" y="330" width="248" height="5" rx="2.5" fill="#E3E3E8"/>
+
+  <text x="800" y="392" text-anchor="middle"
+        font-family="Inter, Segoe UI, Arial, sans-serif"
+        font-size="42" font-weight="600" fill="#50505A">
+    Фото не загружено
+  </text>
+
+  <text x="800" y="436" text-anchor="middle"
+        font-family="Inter, Segoe UI, Arial, sans-serif"
+        font-size="23" font-weight="400" fill="#8A8A93">
+    Изображение для этого объекта пока отсутствует
+  </text>
+</svg>

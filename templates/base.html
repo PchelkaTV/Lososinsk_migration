@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }} — {{ site.title }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/branding/favicon.svg') }}">
+    <meta name="theme-color" content="#163a63">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand-corner brand-corner-left">
+          <div class="corner-badge">
+            {% if site.branding and site.branding.emblem_src %}
+            <img src="{{ site.branding.emblem_src }}" alt="Герб Лососинска">
+            {% else %}Герб{% endif %}
+          </div>
+        </div>
+        <div class="brand-main">
+          <div class="eyebrow">Визы и миграция</div>
+          <h1>{{ site.title }}</h1>
+          <p>{{ site.subtitle }}</p>
+        </div>
+        <div class="brand-corner brand-corner-right">
+          <div class="corner-badge">
+            {% if site.branding and site.branding.flag_src %}
+            <img src="{{ site.branding.flag_src }}" alt="Флаг Лососинска">
+            {% else %}Флаг{% endif %}
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Основная навигация">
+        {% for item in nav_items %}
+        <a class="nav-link {% if request.endpoint == item.endpoint %}nav-link-active{% endif %}" href="{{ url_for(item.endpoint) }}">{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+
+      <main class="site-main">{% block content %}{% endblock %}</main>
+
+      <footer class="site-footer">
+        <span>© 2026 Портал виз и миграции Лососинска</span>
+        <span>Официальная информация о визах, въезде и легализации</span>
+      </footer>
+    </div>
+  </body>
+</html>

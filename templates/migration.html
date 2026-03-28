@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_icon %}
+{% block content %}
+<section class="hero compact-hero migration-hero">
+  <div class="section-tag">{{ migration_page.tag }}</div>
+  <h2>{{ migration_page.title }}</h2>
+  <p>{{ migration_page.lead }}</p>
+</section>
+
+<section class="content-section">
+  <div class="section-heading narrow-heading">
+    <div class="section-tag">{{ migration_page.tabs_title }}</div>
+    <h3>{{ migration_page.tabs_text }}</h3>
+  </div>
+
+  <div class="tabs-shell enhanced-tabs" data-tabs>
+    <div class="tab-bar responsive-tab-bar modern-tab-bar" role="tablist" aria-label="Статусы легализации">
+      {% for item in migration_types %}
+      <button
+        class="tab-card modern-tab {{ item.color }} {% if loop.first %}is-active{% endif %}"
+        type="button"
+        role="tab"
+        aria-selected="{{ 'true' if loop.first else 'false' }}"
+        aria-controls="migration-panel-{{ item.slug }}"
+        id="migration-tab-{{ item.slug }}"
+        data-tab-trigger="{{ item.slug }}"
+      >
+        <span class="tab-card-icon">{{ render_icon(item.icon_name, 'icon-sm') }}</span>
+        <span class="tab-card-copy compact-copy"><strong>{{ item.short_name }}</strong></span>
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="tab-panels-stack">
+      {% for item in migration_types %}
+      <article
+        class="tab-panel detail-panel modern-panel {{ item.color }} {% if loop.first %}is-active{% endif %}"
+        id="migration-panel-{{ item.slug }}"
+        role="tabpanel"
+        aria-labelledby="migration-tab-{{ item.slug }}"
+        {% if not loop.first %}hidden{% endif %}
+        data-tab-panel="{{ item.slug }}"
+      >
+        <div class="detail-card-head {{ item.color }} modern-panel-head modern-head-with-link">
+          <div class="section-card-icon large">{{ render_icon(item.icon_name, 'icon-lg') }}</div>
+          <div class="panel-head-copy">
+            <h3>{{ item.title }}</h3>
+            <p class="panel-summary">{{ item.summary }}</p>
+          </div>
+          <a class="panel-head-link" href="{{ url_for('migration_detail', slug=item.slug) }}">Подробнее</a>
+        </div>
+
+        <div class="metric-grid">
+          {% for detail in item.details %}
+          <div class="metric-card">
+            <div class="metric-label">{{ detail.label }}</div>
+            <div class="metric-value">{{ detail.value }}</div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="text-grid two-text-columns compact-gap">
+          <article class="text-window">
+            <h4>Преимущества</h4>
+            <ul class="ground-list compact-list">
+              {% for benefit in item.benefits %}<li>{{ benefit }}</li>{% endfor %}
+            </ul>
+          </article>
+          <article class="text-window">
+            <h4>Нужно для подачи</h4>
+            <ul class="ground-list compact-list">
+              {% for doc in item.full_documents[:4] %}<li>{{ doc }}</li>{% endfor %}
+            </ul>
+          </article>
+        </div>
+
+        {% if item.pathways %}
+        <section class="detail-subsection compact-top">
+          <h4 class="subsection-title">Основания оформления</h4>
+          <div class="card-grid two-cols">
+            {% for pathway in item.pathways %}
+            <article class="category-detailed-card compact-category-card">
+              <div class="category-code">Основание</div>
+              <h4>{{ pathway.title }}</h4>
+              <p>{{ pathway.summary }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="content-section muted-section">
+  <div class="section-heading narrow-heading">
+    <h3>Общие акты по легализации</h3>
+  </div>
+  <div class="card-grid two-cols">
+    {% for doc in supporting_docs %}
+    <article class="doc-card accent-soft reveal-card">
+      <h4>{{ doc.title }}</h4>
+      <p>{{ doc.description }}</p>
+      <div class="action-row"><a class="btn btn-primary" href="{{ doc.filename_url }}" target="_blank" rel="noreferrer">Читать</a><a class="btn btn-secondary" href="{{ doc.filename_url }}" download>Скачать PDF</a></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function () {
+  const root = document.querySelector('[data-tabs]');
+  if (!root) return;
+  const triggers = Array.from(root.querySelectorAll('[data-tab-trigger]'));
+  const panels = Array.from(root.querySelectorAll('[data-tab-panel]'));
+  function activate(slug) {
+    triggers.forEach((btn) => {
+      const active = btn.dataset.tabTrigger === slug;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach((panel) => {
+      const active = panel.dataset.tabPanel === slug;
+      if (active) {
+        panel.hidden = false;
+        requestAnimationFrame(() => panel.classList.add('is-active'));
+      } else {
+        panel.classList.remove('is-active');
+        window.setTimeout(() => { if (!panel.classList.contains('is-active')) panel.hidden = true; }, 180);
+      }
+    });
+  }
+  triggers.forEach((btn) => btn.addEventListener('click', () => activate(btn.dataset.tabTrigger)));
+})();
+</script>
+{% endblock %}
